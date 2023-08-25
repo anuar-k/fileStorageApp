@@ -1,6 +1,5 @@
 package kz.anuar.audiostorage.model;
 
-import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 

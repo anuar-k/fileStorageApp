@@ -1,5 +1,6 @@
 package kz.anuar.audiostorage.controller;
 
+import com.google.gson.Gson;
 import kz.anuar.audiostorage.model.LogDto;
 import kz.anuar.audiostorage.service.LogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,23 @@ public class LogController {
     @SendTo("/topic/public")
     public List<LogDto> sendMessage(@Payload LogDto logDto) {
 
-        switch (logDto.getContent()) {
-            case "addLog": default:{
+        Gson gson = new Gson();
+        LogDto deserializedLogDto = gson.fromJson(logDto.getContent(), LogDto.class);
+
+        switch (deserializedLogDto.getCommand()) {
+            case "addLog": {
                 logService.save(logDto);
                 break;
             }
             case "logs": {
-                return logService.findAll().stream().map( logEntity -> LogDto.builder().content(logEntity.getContent()).build()).toList();
+                return logService.findAll().stream().map(logEntity -> LogDto
+                                .builder()
+                                .content(logEntity.getContent())
+                                .build())
+                        .toList();
+            }
+            default: {
+                break;
             }
         }
         return null;
