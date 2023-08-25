@@ -2,12 +2,11 @@
 
 | Description | Endpoints | METHOD |
 | ---  | -- | -- |
-| Upload File     | [http://localhost:8080/file/upload][PlDb]  |POST
-| Get File Info   | [http://localhost:8080/file/command][PlGh] |POST
+| Upload File     | [http://localhost:8080/file/upload] |POST
+| Get File Info   | [http://localhost:8080/file/command]|POST
 
 ## Websocket
 
-| Description | Endpoints|
-| ------------ | ---------------------- |
-| Add log     | [http://localhost:8080 ][PlDb]
-| Show logs   | [http://localhost:8080/file/command][PlGh] |POST
+| Description     | Endpoints|
+|-----------------| ---------------------- |
+| Add or show log | [http://localhost:8080 ] 
