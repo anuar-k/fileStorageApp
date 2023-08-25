@@ -28,9 +28,10 @@ public class LogController {
         Gson gson = new Gson();
         LogDto deserializedLogDto = gson.fromJson(logDto.getContent(), LogDto.class);
 
+        System.out.println(deserializedLogDto);
         switch (deserializedLogDto.getCommand()) {
             case "addLog": {
-                logService.save(logDto);
+                logService.save(deserializedLogDto);
                 break;
             }
             case "logs": {

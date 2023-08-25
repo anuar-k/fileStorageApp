@@ -76,7 +76,6 @@ public class StorageServiceImpl implements StorageService {
 
     public boolean findFile(FileDto filter) {
         List<FileEntity> files = fileRepository.findAll(new FileSpecification(filter));
-        System.out.println(files);
         if (files.isEmpty()) {
             return true;
         }

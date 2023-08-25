@@ -46,9 +46,12 @@ function sendMessage(event) {
 function onMessageReceived(payload) {
     let messageArray = JSON.parse(payload.body);
 
+    while (messageArea.lastElementChild) {
+        messageArea.removeChild(messageArea.lastElementChild);
+    }
+
     messageArray.forEach(el => {
         var messageElement = document.createElement('li');
-        // messageElement.appendChild(usernameElement);
         var textElement = document.createElement('p');
         var messageText = document.createTextNode(el.content);
         textElement.appendChild(messageText);
@@ -57,50 +60,6 @@ function onMessageReceived(payload) {
         messageArea.appendChild(messageElement);
         messageArea.scrollTop = messageArea.scrollHeight;
     })
-    // var messageElement = document.createElement('li');
-
-    // if (message.type === 'JOIN') {
-    //     messageElement.classList.add('event-message');
-    //     message.content = message.sender + ' joined!';
-    // } else if (message.type === 'LEAVE') {
-    //     messageElement.classList.add('event-message');
-    //     message.content = message.sender + ' left!';
-    // } else {
-    // messageElement.classList.add('chat-message');
-
-    // var avatarElement = document.createElement('i');
-    // var avatarText = document.createTextNode(message.sender[0]);
-    // avatarElement.appendChild(avatarText);
-    // avatarElement.style['background-color'] = getAvatarColor(message.sender);
-
-    // messageElement.appendChild(avatarElement);
-
-    // var usernameElement = document.createElement('span');
-    // var usernameText = document.createTextNode(message.sender);
-    // usernameElement.appendChild(usernameText);
-    // messageElement.appendChild(usernameElement);
-    // }
-
-    // var textElement = document.createElement('p');
-    // var messageText = document.createTextNode(message.content);
-    // textElement.appendChild(messageText);
-    //
-    // messageElement.appendChild(textElement);
-
-    // messageArea.appendChild(messageElement);
-    // messageArea.scrollTop = messageArea.scrollHeight;
 }
-
-
-// function getAvatarColor(messageSender) {
-//     var hash = 0;
-//     for (var i = 0; i < messageSender.length; i++) {
-//         hash = 31 * hash + messageSender.charCodeAt(i);
-//     }
-//     var index = Math.abs(hash % colors.length);
-//     return colors[index];
-// }
-
-// usernameForm.addEventListener('submit', connect, true)
 connect()
 messageForm.addEventListener('submit', sendMessage, true)

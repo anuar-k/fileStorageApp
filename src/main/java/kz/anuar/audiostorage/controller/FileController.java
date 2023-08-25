@@ -30,8 +30,7 @@ public class FileController {
     @PostMapping("/command")
     public ResponseEntity<?> getFile(@RequestBody FileInfoDto commandDto){
         FileDto fileDto = storageService.doCommand(commandDto);
-
-        if (Objects.nonNull(fileDto)){
+        if (Objects.isNull(fileDto)){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
 
